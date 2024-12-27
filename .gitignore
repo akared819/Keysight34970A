@@ -1,0 +1,6 @@
+/bin
+/lib
+/dbd
+/Keysight34970AApp/Db/O.*
+/configure/O.*
+/iocBoot/iocKeysight34970A/envPaths

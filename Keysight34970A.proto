@@ -1,0 +1,54 @@
+Terminator = CR LF;
+ReadTimeout = 1000;
+WriteTimeout = 1000;
+PollPeriod = 1000;
+ReplyTimeout = 1000;
+LockTimeout = 5000;
+ExtraInput = Ignore;
+
+GetIdn {
+        out "*IDN?";
+        in "%39c";
+}
+
+GetScanList {
+        out "ROUTe:SCAN?";
+        in "%39c";
+}
+
+SetScanList {
+        out "ROUT:SCAN (@201,202,204,206)";
+}
+
+SetTimeTringger {
+        out "TRIG:SOURCE TIMER";
+        out "TRIG:COUNT 1";
+}
+
+SetUnitOff {
+        out "FORMat:READing:UNIT OFF";
+}
+
+Scan {
+        out "INIT";
+        out "FETCh?";
+        in "%39c";
+}
+
+StopScan {
+        out "ABORt";
+}
+
+GetError {
+        out "SYSTem:ERRor?";
+        in "%39c";
+}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,84 @@
+record(stringin, "$(dev):Idn")
+{
+	field(DESC, "$(dev) identification")
+	field(DTYP, "stream")
+	field(INP, "@Keysight34970A.proto GetIdn $(dev)")
+	field(PINI, "YES")
+	field(VAL, "")
+}
+
+record(stringin, "$(dev):GetScanList")
+{
+	field(DESC, "Get scan list")
+	field(DTYP, "stream")
+	field(INP, "@Keysight34970A.proto GetScanList $(dev)")
+	field(VAL, "")
+}
+
+record(stringout, "$(dev):SetScanList")
+{
+	field(DESC, "Set scan list")
+	field(DTYP, "stream")
+	field(OUT, "@Keysight34970A.proto SetScanList $(dev)")
+	field(PINI, "YES")
+	field(VAL, "")
+    field(FLNK, "$(dev):SetTimeTringger")
+}
+
+record(stringin, "$(dev):SetTimeTringger")
+{
+	field(DESC, "Set to be trigged by time")
+	field(DTYP, "stream")
+	field(INP, "@Keysight34970A.proto SetTimeTringger $(dev)")
+	field(VAL, "")
+    field(FLNK, "$(dev):SetUnitOff")
+}
+
+record(stringin, "$(dev):SetUnitOff")
+{
+	field(DESC, "Set unit off")
+	field(DTYP, "stream")
+	field(INP, "@Keysight34970A.proto SetUnitOff $(dev)")
+	field(VAL, "")
+}
+
+record(stringin, "$(dev):Scan")
+{
+	field(DESC, "Start scan")
+	field(DTYP, "stream")
+	field(INP, "@Keysight34970A.proto Scan $(dev)")
+	field(VAL, "")
+	field(SCAN, "Passive")
+}
+
+record(bo, "$(dev):ScanSwitch") {
+    field(DESC, "Start or stop scan")
+    field(VAL, 0)
+    field(FLNK, "$(dev):ScanControl")
+}
+
+record(calcout, "$(dev):ScanControl") {
+    field(DESC, "Control SCAN field")
+    field(INPA, "$(dev):ScanSwitch")
+    field(CALC, "A=1?6:0")
+    field(OUT, "$(dev):Scan.SCAN")
+    field(OOPT, "Every Time")
+}
+
+record(bo, "$(dev):StopScan")
+{
+	field(DESC, "Stop scan")
+	field(DTYP, "stream")
+	field(OUT, "@Keysight34970A.proto StopScan $(dev)")
+	field(VAL, "")
+}
+
+record(stringin, "$(dev):GetError")
+{
+	field(DESC, "Get error")
+	field(DTYP, "stream")
+	field(INP, "@Keysight34970A.proto GetError $(dev)")
+	field(VAL, "")
+}
+
+
